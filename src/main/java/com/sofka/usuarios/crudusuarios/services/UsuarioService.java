@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,8 +16,8 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    public ArrayList<UsuarioModel> obtenerUsuarios(){
-        return (ArrayList<UsuarioModel>) usuarioRepository.findAll();
+    public List<UsuarioModel> obtenerUsuarios(){
+        return (List<UsuarioModel>) usuarioRepository.findAll();
     }
 
     public UsuarioModel guardarUsuario(UsuarioModel usuario){
@@ -27,7 +28,7 @@ public class UsuarioService {
         return usuarioRepository.findById(id);
     }
 
-    public ArrayList<UsuarioModel> obtenerPorPrioridad(Integer prioridad){
+    public List<UsuarioModel> obtenerPorPrioridad(Integer prioridad){
         return usuarioRepository.findByPrioridad(prioridad);
     }
 
