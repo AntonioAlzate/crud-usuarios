@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +37,13 @@ public class UsuarioController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Optional<UsuarioModel>> obtenerUsuarioPorId(@PathVariable("id") Long id){
-        return ResponseEntity.ok(usuarioService.obtenerPorId(id));
+        Optional<UsuarioModel> temporal = usuarioService.obtenerPorId(id);
+
+        try {
+            return ResponseEntity.ok(temporal);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
     }
 
     @GetMapping("/query")
